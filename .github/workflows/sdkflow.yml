@@ -39,4 +39,4 @@ jobs:
           operator-sdk init --domain=example.com --repo=github.com/example-inc/memcached-operator
       - name: create api
         run: |
-        operator-sdk create api --group cache --version v1 --kind Memcached --resource=true --controller=true
+          operator-sdk create api --group cache --version v1 --kind Memcached --resource=true --controller=true
