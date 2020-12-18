@@ -40,4 +40,3 @@ jobs:
       - name: create api
         run: |
         operator-sdk create api --group cache --version v1 --kind Memcached --resource=true --controller=true
-        docker version
