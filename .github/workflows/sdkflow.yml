@@ -32,15 +32,12 @@ jobs:
       - name: Check version
         run: |
           operator-sdk version
-<<<<<<< HEAD
       - name: quickstart install
         run: |
-        mkdir memcached-operator
-        cd memcached-operator
-        operator-sdk init --domain=example.com --repo=github.com/example-inc/memcached-operator
+          mkdir memcached-operator
+          cd memcached-operator
+          operator-sdk init --domain=example.com --repo=github.com/example-inc/memcached-operator
       - name: create api
         run: |
-        operator-sdk create api --group cache --version v1 --kind Memcached --resource=true --controller=true
-        docker version
-=======
->>>>>>> 421d1366592d1b04752245e48c6963de79d0b6c7
+          operator-sdk create api --group cache --version v1 --kind Memcached --resource=true --controller=true
+          docker version
