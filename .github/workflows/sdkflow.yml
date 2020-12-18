@@ -30,8 +30,9 @@ jobs:
         run: |
           gcc --version
       - name: Install operator-sdk
-        run: |
+        env:
           RELEASE_VERSION=v1.2.0
+        run: |
           curl -LO https://github.com/operator-framework/operator-sdk/releases/download/${RELEASE_VERSION}/operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu
           chmod +x operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu && sudo mkdir -p /usr/local/bin/ && sudo cp operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu /usr/local/bin/operator-sdk && rm operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu
       - name: Check version
@@ -41,9 +42,12 @@ jobs:
         run: |
           rm -rf memcached-operator
           mkdir memcached-operator
+          ls
           cd memcached-operator
           operator-sdk init --domain=example.com --repo=github.com/holdeneoneal/giddy/memcached-operator
       - name: create api
         run: |
           pwd
+          ls
+          cd memcached-operator
           operator-sdk create api --group=cache --version=v1alpha1 --kind=Memcached --resource=true --controller=true
