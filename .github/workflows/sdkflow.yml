@@ -40,7 +40,6 @@ jobs:
           operator-sdk version
       - name: quickstart install
         run: |
-          tree
           rm -rf memcached-operator
           mkdir memcached-operator
           ls
