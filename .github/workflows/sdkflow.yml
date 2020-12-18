@@ -39,11 +39,12 @@ jobs:
           operator-sdk version
       - name: quickstart install
         run: |
+          tree
           rm -rf memcached-operator
           mkdir memcached-operator
           cd memcached-operator
           operator-sdk init --domain=example.com --repo=github.com/holdeneoneal/giddy/memcached-operator
       - name: create api
         run: |
-          pwd
+          tree
           operator-sdk create api --group=cache --version=v1alpha1 --kind=Memcached --resource=true --controller=true
