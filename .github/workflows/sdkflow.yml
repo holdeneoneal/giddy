@@ -34,9 +34,9 @@ jobs:
           operator-sdk version
       - name: quickstart install
         run: |
-        mkdir memcached-operator
-        cd memcached-operator
-        operator-sdk init --domain=example.com --repo=github.com/example-inc/memcached-operator
+          mkdir memcached-operator
+          cd memcached-operator
+          operator-sdk init --domain=example.com --repo=github.com/example-inc/memcached-operator
       - name: create api
         run: |
         operator-sdk create api --group cache --version v1 --kind Memcached --resource=true --controller=true
