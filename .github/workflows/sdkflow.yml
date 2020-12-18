@@ -32,6 +32,7 @@ jobs:
       - name: Check version
         run: |
           operator-sdk version
+<<<<<<< HEAD
       - name: quickstart install
         run: |
         mkdir memcached-operator
@@ -41,3 +42,5 @@ jobs:
         run: |
         operator-sdk create api --group cache --version v1 --kind Memcached --resource=true --controller=true
         docker version
+=======
+>>>>>>> 421d1366592d1b04752245e48c6963de79d0b6c7
