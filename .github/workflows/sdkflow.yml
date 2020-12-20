@@ -32,7 +32,7 @@ jobs:
         env:
           RELEASE_VERSION: v1.2.0
         run: |
-          if [ -d "$GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator"]; then
+          if [ -d "$GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator" ]; then
             rm $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
           fi
           mkdir $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
@@ -58,7 +58,7 @@ jobs:
         env:
           RELEASE_VERSION: v1.3.0
         run: |
-          if [ -d "$GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator"]; then
+          if [ -d "$GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator" ]; then
             rm $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
           fi
           mkdir $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
