@@ -32,10 +32,11 @@ jobs:
         env:
           RELEASE_VERSION: v1.2.0
         run: |
+          ls $GITHUB_WORKSPACE
           if [ -d "$GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator" ]; then
             rm $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
           fi
-          mkdir $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
+          mkdir -p $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
           cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
           operator-sdk init --domain=example.com --repo=github.com/holdeneoneal/giddy/memcached-operator
       - name: create api v1.2.0
@@ -61,7 +62,7 @@ jobs:
           if [ -d "$GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator" ]; then
             rm $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
           fi
-          mkdir $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
+          mkdir -p $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
           cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
           operator-sdk init --domain=example.com --repo=github.com/holdeneoneal/giddy/memcached-operator
       - name: create api v1.3.0
