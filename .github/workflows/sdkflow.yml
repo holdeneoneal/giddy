@@ -70,9 +70,9 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
           operator-sdk-${RELEASE_VERSION} create api --group=cache --version=v1alpha1 --kind=Memcached --resource=true --controller=true
-      - name: diff v1.2.0 and v1.3.0
-        env:
-          V12: v1.2.0
-          V13: v1.3.0
-        run:
-          diff $GITHUB_WORKSPACE/${V12}/memcached-operator $GITHUB_WORKSPACE/${V13}/memcached-operator > $GITHUB_WORKSPACE/diff.log 
+      # - name: diff v1.2.0 and v1.3.0
+      #   env:
+      #     V12: v1.2.0
+      #     V13: v1.3.0
+      #   run:
+      #     diff $GITHUB_WORKSPACE/${V12}/memcached-operator $GITHUB_WORKSPACE/${V13}/memcached-operator > $GITHUB_WORKSPACE/diff.log 
