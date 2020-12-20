@@ -42,7 +42,7 @@ jobs:
           RELEASE_VERSION: v1.2.0
         run: |
           cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          ooperator-sdk-${RELEASE_VERSION} create api --group=cache --version=v1alpha1 --kind=Memcached --resource=true --controller=true
+          operator-sdk-${RELEASE_VERSION} create api --group=cache --version=v1alpha1 --kind=Memcached --resource=true --controller=true
 
       - name: Download and Install operator-sdk v1.3.0
         env:
