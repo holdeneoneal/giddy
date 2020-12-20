@@ -24,7 +24,7 @@ jobs:
           RELEASE_VERSION: v1.2.0
         run: |
           curl -LO https://github.com/operator-framework/operator-sdk/releases/download/${RELEASE_VERSION}/operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu
-          chmod +x operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu && sudo mkdir -p /usr/local/bin/ && sudo cp operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu /usr/local/bin/operator-sdk && rm operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu
+          chmod +x operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu && sudo mkdir -p /usr/local/bin/ && sudo cp operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu /usr/local/bin/operator-sdk-${RELEASE_VERSION} && rm operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu
       - name: Check version
         run: |
           operator-sdk version
@@ -38,23 +38,23 @@ jobs:
           fi
           mkdir -p $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
           cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          operator-sdk init --domain=example.com --repo=github.com/holdeneoneal/giddy/memcached-operator
+          operator-sdk-${RELEASE_VERSION} init --domain=example.com --repo=github.com/holdeneoneal/giddy/memcached-operator
       - name: create api v1.2.0
         env:
           RELEASE_VERSION: v1.2.0
         run: |
           cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          operator-sdk create api --group=cache --version=v1alpha1 --kind=Memcached --resource=true --controller=true
+          ooperator-sdk-${RELEASE_VERSION} create api --group=cache --version=v1alpha1 --kind=Memcached --resource=true --controller=true
 
       - name: Download and Install operator-sdk v1.3.0
         env:
           RELEASE_VERSION: v1.3.0
         run: |
           curl -LO https://github.com/operator-framework/operator-sdk/releases/download/${RELEASE_VERSION}/operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu
-          chmod +x operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu && sudo mkdir -p /usr/local/bin/ && sudo cp operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu /usr/local/bin/operator-sdk && rm operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu
+          chmod +x operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu && sudo mkdir -p /usr/local/bin/ && sudo cp operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu /usr/local/bin/operator-sdk-${RELEASE_VERSION} && rm operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu
       - name: Check version
         run: |
-          operator-sdk version
+          operator-sdk-${RELEASE_VERSION} version
       - name: quickstart install v1.3.0
         env:
           RELEASE_VERSION: v1.3.0
@@ -64,14 +64,13 @@ jobs:
           fi
           mkdir -p $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
           cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          operator-sdk init --domain=example.com --repo=github.com/holdeneoneal/giddy/memcached-operator
+          operator-sdk-${RELEASE_VERSION}init --domain=example.com --repo=github.com/holdeneoneal/giddy/memcached-operator
       - name: create api v1.3.0
         env:
           RELEASE_VERSION: v1.3.0
         run: |
           cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          operator-sdk create api --group=cache --version=v1alpha1 --kind=Memcached --resource=true --controller=true
-      
+          operator-sdk-${RELEASE_VERSION} create api --group=cache --version=v1alpha1 --kind=Memcached --resource=true --controller=true
       - name: diff v1.2.0 and v1.3.0
         env:
           V12: v1.2.0
