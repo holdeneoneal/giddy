@@ -3,7 +3,14 @@
 name: sdk-workflow
 
 # Controls when the action will run.
+<<<<<<< HEAD
 on: [push]
+=======
+on: push
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+>>>>>>> 46f2bdb40ac831a3406d514be21b6277d156874c
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,6 +34,7 @@ jobs:
           curl -LO https://github.com/operator-framework/operator-sdk/releases/download/${RELEASE_VERSION}/operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu
           chmod +x operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu && sudo mkdir -p /usr/local/bin/ && sudo cp operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu /usr/local/bin/operator-sdk && rm operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu
       - name: Check version
+<<<<<<< HEAD
         run: |
           operator-sdk version
       - name: quickstart install v1.2.0
@@ -41,6 +49,22 @@ jobs:
         env:
           RELEASE_VERSION: v1.2.0
         run: |
+=======
+        run: |
+          operator-sdk version
+      - name: quickstart install v1.2.0
+        env:
+          RELEASE_VERSION: v1.2.0
+        run: |
+          rm $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
+          mkdir $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
+          cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
+          operator-sdk init --domain=example.com --repo=github.com/holdeneoneal/giddy/memcached-operator
+      - name: create api v1.2.0
+        env:
+          RELEASE_VERSION: v1.2.0
+        run: |
+>>>>>>> 46f2bdb40ac831a3406d514be21b6277d156874c
           cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
           operator-sdk create api --group=cache --version=v1alpha1 --kind=Memcached --resource=true --controller=true
 
