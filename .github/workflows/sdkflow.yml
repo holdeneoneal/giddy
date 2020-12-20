@@ -74,7 +74,7 @@ jobs:
         env:
           V12: v1.2.0
           V13: v1.3.0
-        run:
+        run: |
           ls $GITHUB_WORKSPACE/$V12/memcached-operator
           ls $GITHUB_WORKSPACE/$V13/memcached-operator
           diff $GITHUB_WORKSPACE/$V12/memcached-operator $GITHUB_WORKSPACE/$V13/memcached-operator 
