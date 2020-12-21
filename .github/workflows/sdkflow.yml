@@ -14,67 +14,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      - name: set GOMODULES
-        run: export GO111MODULE=on
-
-      - name: Download and Install operator-sdk v1.2.0
-        env:
-          RELEASE_VERSION: v1.2.0
+      - uses:  holdeneoneal/installsdk@main
+      - name: say Hello
         run: |
-          curl -LO https://github.com/operator-framework/operator-sdk/releases/download/${RELEASE_VERSION}/operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu
-          chmod +x operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu && sudo mkdir -p /usr/local/bin/ && sudo cp operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu /usr/local/bin/operator-sdk-${RELEASE_VERSION} && rm operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu
-          operator-sdk-${RELEASE_VERSION} version
-      - name: quickstart install v1.2.0
-        env:
-          RELEASE_VERSION: v1.2.0
-        run: |
-          ls $GITHUB_WORKSPACE
-          if [ -d "$GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator" ]; then
-            rm $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          fi
-          mkdir -p $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          operator-sdk-${RELEASE_VERSION} init --domain=example.com --repo=github.com/holdeneoneal/giddy/memcached-operator
-      - name: create api v1.2.0
-        env:
-          RELEASE_VERSION: v1.2.0
-        run: |
-          cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          operator-sdk-${RELEASE_VERSION} create api --group=cache --version=v1alpha1 --kind=Memcached --resource=true --controller=true
-
-      - name: Download and Install operator-sdk v1.3.0
-        env:
-          RELEASE_VERSION: v1.3.0
-        run: |
-          export ARCH=$(case $(arch) in x86_64) echo -n amd64 ;; aarch64) echo -n arm64 ;; *) echo -n $(arch) ;; esac)
-          export OS=$(uname | awk '{print tolower($0)}')
-          export OPERATOR_SDK_DL_URL=https://github.com/operator-framework/operator-sdk/releases/latest/download
-          curl -LO ${OPERATOR_SDK_DL_URL}/operator-sdk_${OS}_${ARCH}
-          chmod +x operator-sdk_${OS}_${ARCH} && sudo mv operator-sdk_${OS}_${ARCH} /usr/local/bin/operator-sdk-${RELEASE_VERSION}
-          operator-sdk-${RELEASE_VERSION} version
-      - name: quickstart install v1.3.0
-        env:
-          RELEASE_VERSION: v1.3.0
-        run: |
-          if [ -d "$GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator" ]; then
-            rm $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          fi
-          mkdir -p $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          operator-sdk-${RELEASE_VERSION} init --domain=example.com --repo=github.com/holdeneoneal/giddy/memcached-operator
-      - name: create api v1.3.0
-        env:
-          RELEASE_VERSION: v1.3.0
-        run: |
-          cd $GITHUB_WORKSPACE/${RELEASE_VERSION}/memcached-operator
-          operator-sdk-${RELEASE_VERSION} create api --group=cache --version=v1alpha1 --kind=Memcached --resource=true --controller=true
-      - name: diff v1.2.0 and v1.3.0
-        env:
-          V12: v1.2.0
-          V13: v1.3.0
-        run: |
-          ls $GITHUB_WORKSPACE/$V12/memcached-operator
-          ls $GITHUB_WORKSPACE/$V13/memcached-operator
-          diff $GITHUB_WORKSPACE/$V12/memcached-operator $GITHUB_WORKSPACE/$V13/memcached-operator 
+        ls /
+        echo Hello
