@@ -17,5 +17,5 @@ jobs:
       - uses:  holdeneoneal/installsdk@main
       - name: say Hello
         run: |
-        ls /
-        echo Hello
+          ls /
+          echo Hello
