@@ -21,7 +21,5 @@ jobs:
       - uses:  holdeneoneal/installsdk@main
       - name: say Hello
         run: |
-          ls /
-          ls /workspace/*
           ls $GITHUB_WORKSPACE/*
           echo Hello World
