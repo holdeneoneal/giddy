@@ -18,4 +18,5 @@ jobs:
       - name: say Hello
         run: |
           ls /
+          ls /workspace/*
           echo Hello
