@@ -19,7 +19,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses:  holdeneoneal/installsdk@main
-      - name: say Hello
+      - name: Install SDK v1.2.0
+        env:
+          OPERATOR_SDK_VERSION: v1.2.0
         run: |
-          ls $GITHUB_WORKSPACE/*
-          echo Hello World
+          echo Hello World!!!
